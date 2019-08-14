@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!--
+/***************************************
+ *** Product Order History Extension ***
+ ***************************************
+ *
+ * @copyright   Copyright (c) 2015
+ * @company     NetAttingo Technologies
+ * @package     Netgo_Prohistory
+ * @author 		Vipin
+ * @dev			77vips@gmail.com
+ *
+ */
+-->
+<config>
+	<modules>
+		<Netgo_Prohistory>
+			<version>0.0.1</version>
+		</Netgo_Prohistory>
+	</modules>
+	<default>
+        <prohistory_option>
+            <contest>
+                <enable>1</enable>
+            </contest>
+        </prohistory_option>
+    </default>
+	<global> 
+		<blocks>
+			<prohistory>
+				<class>Netgo_Prohistory_Block</class>
+			</prohistory>
+		</blocks>
+		<helpers>
+			<prohistory>
+				<class>Netgo_Prohistory_Helper</class>
+			</prohistory>
+		</helpers>
+		<models>
+			<prohistory>
+				<class>Netgo_Prohistory_Model</class>
+				<resourceModel>prohistory_resource</resourceModel>
+			</prohistory> 
+		</models> 
+	</global>
+	<adminhtml>
+		<layout>
+			<updates>
+				<alfasft_prohistory>
+					<file>netgo_prohistory.xml</file>
+				</alfasft_prohistory>
+			</updates>
+		</layout> 
+		<events>
+			<core_block_abstract_prepare_layout_after>
+				<observers>
+					<contest>
+						<type>singleton</type>
+						<class>prohistory/adminhtml_observer</class>
+						<method>addOrderBlock</method>
+					</contest>
+				</observers>
+			</core_block_abstract_prepare_layout_after> 
+		</events>
+	</adminhtml>
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<Netgo_Prohistory before="Mage_Adminhtml">Netgo_Prohistory_Adminhtml</Netgo_Prohistory>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+
+</config>

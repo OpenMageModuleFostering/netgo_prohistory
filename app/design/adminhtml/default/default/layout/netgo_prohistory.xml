@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/***************************************
+ *** Product Order History Extension ***
+ ***************************************
+ *
+ * @copyright   Copyright (c) 2015
+ * @company     NetAttingo Technologies
+ * @package     Netgo_Prohistory
+ * @author 		Vipin
+ * @dev			77vips@gmail.com
+ *
+ */
+--> 
+<layout> 
+	<adminhtml_prohistory_order_catalog_product_orders>
+		<block type="core/text_list" name="root" output="toHtml">
+			<block type="prohistory/adminhtml_catalog_product_edit_tab_order" name="product.edit.tab.order"/>
+			<block type="adminhtml/widget_grid_serializer" name="contest_grid_serializer">
+				<reference name="contest_grid_serializer">
+					<action method="initSerializerBlock">
+						<grid_block_name>product.edit.tab.order</grid_block_name>
+						<data_callback>getSelectedOrders</data_callback>
+						<hidden_input_name>orders</hidden_input_name>
+						<reload_param_name>product_orders</reload_param_name>
+					</action>
+					<action method="addColumnInputName">
+						<input_name>position</input_name>
+					</action>
+				</reference>
+			</block>
+		</block>
+	</adminhtml_prohistory_order_catalog_product_orders>  
+	
+	<adminhtml_catalog_product_edit>
+		<reference name="head">
+            <action method="addJs"><script>prohistory/function.js</script></action>       
+        </reference>
+    </adminhtml_catalog_product_edit>
+	
+	
+	<adminhtml_prohistory_order_catalog_product_quickorder> 
+		 <block type="prohistory/adminhtml_order" name="root" output="toHtml"  template="prohistory/quick_order.phtml" /> 
+    </adminhtml_prohistory_order_catalog_product_quickorder> 
+</layout>

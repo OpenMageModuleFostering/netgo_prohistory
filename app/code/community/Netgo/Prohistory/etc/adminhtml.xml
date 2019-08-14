@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/***************************************
+ *** Product Order History Extension ***
+ ***************************************
+ *
+ * @copyright   Copyright (c) 2015
+ * @company     NetAttingo Technologies
+ * @package     Netgo_Prohistory
+ * @author 		Vipin
+ * @dev			77vips@gmail.com
+ *
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <prohistory_option>
+                                        <title>Prohistory</title>
+                                    </prohistory_option>
+                                </children>
+                            </config>
+                        </children>
+                    </system> 
+                </children>
+            </admin>
+        </resources>
+    </acl> 
+</config>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+    <name>Netgo_Prohistory</name>
+    <version>1.0.0</version>
+    <stability>stable</stability>
+    <license>Open Software License (OSL)</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Product Order History</summary>
+    <description>The default functionality of Magento supports order wise history which is a good approach but seems messy if we are focusing on  consistent customer as well as if we desire to get the sell information of a particular product. So to overcome such flaw,we developed PRODUCT ORDER HISTORY extension,which helps to get product wise history.&#xD;
+&#xD;
+This product wise history can be found under every product i.e. by just knowing the name of product you can get of all the orders associated with it by going to Order history tab under each product.</description>
+    <notes>First Preview Release</notes>
+    <authors><author><name>Vipin</name><user>Netgo</user><email>77vips@gmail.com</email></author></authors>
+    <date>2015-07-21</date>
+    <time>13:28:43</time>
+    <contents><target name="magecommunity"><dir name="Netgo"><dir name="Prohistory"><dir name="Block"><dir name="Adminhtml"><dir name="Catalog"><dir name="Product"><dir name="Edit"><dir name="Tab"><file name="Order.php" hash="3ef98804127fa482fe51deaafc3d6450"/></dir></dir><dir name="Renderer"><file name="Action.php" hash="2050e349ccac229aec472965618e4e32"/></dir></dir></dir><file name="Order.php" hash="4060ddbae898851195be88c8afdb6c30"/></dir></dir><dir name="Helper"><file name="Data.php" hash="cae3907de293dfa95879ed3ee9350f1a"/></dir><dir name="Model"><dir name="Adminhtml"><file name="Observer.php" hash="4cb7b5459e518b86a749fbd2fc037b2d"/></dir></dir><dir name="controllers"><dir name="Adminhtml"><dir name="Prohistory"><dir name="Order"><dir name="Catalog"><file name="ProductController.php" hash="740902d44d61a5efacca5036cbb10779"/></dir></dir></dir></dir></dir><dir name="etc"><file name="adminhtml.xml" hash="73b44642bdde6b0b2af212e425cc0fdb"/><file name="config.xml" hash="4e83ebdba9ec1b55db138b27e148d3c1"/><file name="system.xml" hash="155f5f21261f47ad470a3366c753c6b0"/></dir></dir></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><file name="netgo_prohistory.xml" hash="f79b35846ed239d57bba2cf6f0dc0293"/></dir><dir name="template"><dir name="prohistory"><file name="quick_order.phtml" hash="baa0a957210f81ed1bbca3e0798c97c2"/></dir></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Netgo_Prohistory.xml" hash="811e462c3b85f03b2d3ba1a95c49be36"/></dir></target><target name="mage"><dir name="js"><dir name="prohistory"><file name="function.js" hash="dad90a80b7cc2b02edab289df3fbfef5"/></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
+</package>

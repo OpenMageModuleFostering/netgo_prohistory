@@ -1,0 +1,172 @@
+<?php
+/***************************************
+ *** Product Order History Extension ***
+ ***************************************
+ *
+ * @copyright   Copyright (c) 2015
+ * @company     NetAttingo Technologies
+ * @package     Netgo_Prohistory
+ * @author 		Vipin
+ * @dev			77vips@gmail.com
+ *
+ */
+?>
+<?php $_order = $this->getOrder(); ?>
+<br/>
+<div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-products">Quick Order Information : #<?php echo $_order->getIncrementId(); ?></h4>
+        </div>
+    </div>
+<div class="grid1 np">
+  <div class="hor-scroll">
+    <table cellspacing="0" class="data order-tables">
+        <col />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <thead>
+            <tr class="headings">
+                <th><?php echo $this->helper('sales')->__('Product') ?></th> 
+                <th><span class="nobr"><?php echo $this->helper('sales')->__('Original Price') ?></span></th>
+                <th><?php echo $this->helper('sales')->__('Price') ?></th>
+                <th class="a-center"><?php echo $this->helper('sales')->__('Qty') ?></th>
+                <th><?php echo $this->helper('sales')->__('Subtotal') ?></th>
+                <th><span class="nobr"><?php echo $this->helper('sales')->__('Tax Amount') ?></span></th>
+                <th><span class="nobr"><?php echo $this->helper('sales')->__('Tax Percent') ?></span></th>
+                <th><span class="nobr"><?php echo $this->helper('sales')->__('Discount Amount') ?></span></th>
+                <th class="last"><span class="nobr"><?php echo $this->helper('sales')->__('Row Total') ?></span></th>
+            </tr>
+        </thead>
+        <?php $_items = $_order->getAllItems();   ?>
+		 <tbody class="<?php echo $i%2?'even':'odd' ?>">
+        <?php $i=0;foreach ($_items as $_item):?>
+            <?php  
+			if ($_item->getParentItem()) continue; else $i++;?>
+            <tr class="border">
+                <td><?php echo $_item->getName();//$itemsData[0]['name']; ?></td> 
+                <td><?php echo Mage::helper('core')->currency($_item->getBaseOriginalPrice(), true, false); ?></span></td>
+                <td><?php echo Mage::helper('core')->currency($_item->getBasePrice(), true, false); ?></td>
+                <td class="a-center"><?php echo round($_item->getQtyOrdered()); ?></td>
+                <td><?php echo Mage::helper('core')->currency($_item->getBaseRowTotal(), true, false); ?></td>
+                <td><span class="nobr"><?php echo Mage::helper('core')->currency($_item->getTaxAmount(), true, false); ?></span></td>
+                <td><span class="nobr"><?php echo round($_item->getTaxPercent()); ?>%</span></td>
+                <td><span class="nobr"><?php echo Mage::helper('core')->currency($_item->getDiscountAmount(), true, false); ?></span></td>
+                <td class="last"><span class="nobr"><?php echo Mage::helper('core')->currency($_item->getBaseRowTotal(), true, false); ?></span></td>
+            <tr>
+        <?php endforeach; ?>
+		</tbody>
+    </table> 
+  </div>
+</div>
+<br />
+
+
+<!--info section start-->
+<div class="box-left">
+    <!--Order Information-->
+    <!--Account Information-->
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-account"><?php echo Mage::helper('sales')->__('Account Information') ?></h4>
+            <div class="tools"><?php echo $this->getAccountEditLink()?></div>
+        </div>
+        <div class="fieldset">
+            <div class="hor-scroll">
+                <table cellspacing="0" class="form-list">
+				<tr>
+					<td class="label"><label><?php echo Mage::helper('sales')->__('Order Date');//echo '<pre>';print_r($_order->getData()); ?></label></td>
+					<td class="value"><strong><span id="order_status"><?php echo $_order->getCreatedAt() ?></span></strong></td>
+				</tr>
+				
+                <tr>
+                    <td class="label"><label><?php echo Mage::helper('sales')->__('Customer Name') ?></label></td>
+                    <td class="value">
+                    <?php if ($_customerUrl=$this->getCustomerViewUrl()) : ?>
+                        <a href="<?php echo $_customerUrl ?>" target="_blank"><strong><?php echo $this->escapeHtml($_order->getCustomerName()) ?></strong></a>
+                    <?php else: ?>
+                        <strong><?php echo $this->escapeHtml($_order->getCustomerName()) ?></strong> (<?php echo $_order->getCustomerEmail() ?>)
+                    <?php endif; ?>
+                    </td>
+                </tr>  
+				<tr>
+					<td class="label"><label><?php echo Mage::helper('sales')->__('Order Status') ?></label></td>
+					<td class="value"><strong><span id="order_status"><?php echo $_order->getStatusLabel() ?></span></strong></td>
+				</tr>
+                </table>
+            </div>
+        </div>
+		
+    </div>
+	<div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-payment-method">Payment Information</h4>
+            </div>
+            <fieldset><?php echo $_order->getPayment()->getMethodInstance()->getTitle(); ?></fieldset>
+        </div>
+	
+	
+</div> 
+<div class="box-right entry-edit">
+		<div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-shipping-method"><?php echo Mage::helper('sales')->__('Shipping &amp; Handling Information') ?></h4>
+            </div>
+            <fieldset>
+                <?php  if ($_order->getTracksCollection()->count()) : ?>
+                <a href="#" id="linkId" onclick="popWin('<?php echo Mage::App()->helper('shipping')->getTrackingPopupUrlBySalesModel($_order) ?>','trackorder','width=800,height=600,resizable=yes,scrollbars=yes')" title="<?php echo $this->__('Track Order') ?>"><?php echo $this->__('Track Order') ?></a>
+                <br/>
+                <?php endif; ?> 
+				<table cellspacing="0" class="form-list">
+				<tr>
+					 <td class="value"><strong><span id="order_status"><?php 
+					 echo $_order->getShippingDescription().' '.Mage::helper('core')->currency($_order->getShippingAmount(), true, false); ?></span></strong></td>
+				</tr>
+                </table>
+				
+            </fieldset>
+        </div>
+
+        <div class="entry-edit-head"><h4>Order Totals</h4></div>
+        <div class="order-totals">
+		<table cellspacing="0" width="100%" > 
+		<tbody style="background: none;">
+		<tr class="0">
+			<td class="label">Subtotal</td>
+			<td><span class="price"><?php echo Mage::helper('core')->currency($_order->getBaseSubtotal(), true, false); ?></span></td>
+		</tr>
+		<tr class="0">
+			<td class="label">Shipping & Handling</td>
+			<td><span class="price"><?php echo Mage::helper('core')->currency($_order->getShippingAmount(), true, false); ?></span></td>
+		</tr>
+		<tr class="0">
+			<td class="label">
+				<strong>Grand Total</strong>
+			</td>
+			<td class="emph">
+				<strong><span class="price"><?php echo Mage::helper('core')->currency($_order->getGrandTotal(), true, false); ?></span></strong>
+			</td>
+		</tr> 
+		
+	 
+	</table>
+</div>
+</div>
+<style>
+.grid .box-left tbody{ background: none !important;}
+.grid .box-left table td{ border:none !important; }
+.grid .box-left tr{ background: none !important;}
+.grid tr .form-list tr{ background: none !important;}
+.grid .box-right table td{ border:none !important; }
+.grid tbody { background:  none !important; }
+</style>
+
+
+
+ 
