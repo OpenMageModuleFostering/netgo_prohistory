@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/Netgo_Prohistory",
+    "name": "openmage-module-fostering\/netgo_prohistory",
     "type": "magento-module",
-    "license": "Open-Software-License-(OSL)",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "Product Order History",
     "authors": [
