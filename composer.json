@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Netgo_Prohistory",
+    "name": "OpenMageModuleFostering\/Netgo_Prohistory",
     "type": "magento-module",
     "license": "Open-Software-License-(OSL)",
     "homepage": "",
     "description": "Product Order History",
     "authors": [
-    {
-        "name": "Vipin",
-        "email": "77vips@gmail.com"
-    }
-],
+        {
+            "name": "Vipin",
+            "email": "77vips@gmail.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
